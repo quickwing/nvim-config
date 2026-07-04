@@ -22,7 +22,6 @@ return {
             "hrsh7th/cmp-nvim-lsp",
         },
         config = function()
-            local lspconfig = require("lspconfig")
             local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
             -- LSP keymaps (only when server attaches)
@@ -55,7 +54,7 @@ return {
             })
 
             -- Pyright (Python)
-            lspconfig.pyright.setup({
+            vim.lsp.config("pyright", {
                 capabilities = capabilities,
                 on_init = function(client)
                     -- Auto-detect uv .venv on Windows
@@ -83,7 +82,7 @@ return {
             })
 
             -- lua_ls (for editing Neovim config)
-            lspconfig.lua_ls.setup({
+            vim.lsp.config("lua_ls", {
                 capabilities = capabilities,
                 settings = {
                     Lua = {
@@ -97,6 +96,8 @@ return {
                     },
                 },
             })
+
+            vim.lsp.enable({ "pyright", "lua_ls" })
         end,
     },
 }

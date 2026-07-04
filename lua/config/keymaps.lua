@@ -29,3 +29,27 @@ map("n", "<leader>d", vim.diagnostic.open_float, { desc = "Show diagnostic" })
 
 -- Better paste (don't overwrite register)
 map("x", "<leader>p", [["_dP]], { desc = "Paste without overwriting" })
+
+-- Run Python with uv in a terminal split
+local function uv_run_module(module)
+    vim.cmd("botright 15split | terminal uv run python -m " .. module)
+    vim.cmd("startinsert")
+end
+
+map("n", "<leader>rr", function()
+    local file = vim.fn.expand("%:.") -- path relative to cwd
+    if not file:match("%.py$") then
+        vim.notify("Not a Python file: " .. file, vim.log.levels.WARN)
+        return
+    end
+    local module = file:gsub("%.py$", ""):gsub("[/\\]", ".")
+    uv_run_module(module)
+end, { desc = "Run current file (uv run python -m)" })
+
+map("n", "<leader>rm", function()
+    vim.ui.input({ prompt = "Module: " }, function(module)
+        if module and module ~= "" then
+            uv_run_module(module)
+        end
+    end)
+end, { desc = "Run module (uv run python -m ...)" })

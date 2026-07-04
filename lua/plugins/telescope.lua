@@ -13,6 +13,7 @@ return {
         { "<leader>fs", "<cmd>Telescope lsp_document_symbols<CR>", desc = "Document symbols" },
         { "<leader>fd", "<cmd>Telescope diagnostics<CR>", desc = "Diagnostics" },
         { "<leader>fr", "<cmd>Telescope oldfiles<CR>", desc = "Recent files" },
+        { "<leader>/", "<cmd>Telescope current_buffer_fuzzy_find<CR>", desc = "Search in current file" },
     },
     opts = {
         defaults = {
