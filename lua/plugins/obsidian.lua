@@ -15,6 +15,9 @@ return {
             { "<leader>ot", "<cmd>Obsidian today<CR>", desc = "Daily note" },
             { "<leader>ob", "<cmd>Obsidian backlinks<CR>", desc = "Backlinks" },
             { "<leader>og", "<cmd>Obsidian tags<CR>", desc = "Tags" },
+            { "<leader>oy", "<cmd>Obsidian yesterday<CR>", desc = "Yesterday's daily note" },
+            { "<leader>or", "<cmd>Obsidian rename<CR>", desc = "Rename note (updates backlinks)" },
+            { "<leader>oe", ":Obsidian extract_note<CR>", mode = "v", desc = "Extract selection to new note" },
         },
         opts = {
             legacy_commands = false,

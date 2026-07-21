@@ -18,6 +18,17 @@ vim.api.nvim_create_autocmd("BufReadPost", {
     end,
 })
 
+-- Treesitter-based folding for markdown (za to toggle a heading section)
+vim.api.nvim_create_autocmd("FileType", {
+    group = vim.api.nvim_create_augroup("markdown_folding", { clear = true }),
+    pattern = "markdown",
+    callback = function()
+        vim.opt_local.foldmethod = "expr"
+        vim.opt_local.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+        vim.opt_local.foldlevel = 99 -- start with everything open
+    end,
+})
+
 -- Python-specific settings
 vim.api.nvim_create_autocmd("FileType", {
     group = vim.api.nvim_create_augroup("python_settings", { clear = true }),
