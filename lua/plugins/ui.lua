@@ -53,6 +53,7 @@ return {
         },
         opts = {
             view_options = { show_hidden = true },
+            delete_to_trash = true,
             keymaps = {
                 ["q"] = "actions.close",
             },
