@@ -48,3 +48,6 @@ vim.opt.mouse = "a"
 
 -- Completion menu
 vim.opt.completeopt = { "menu", "menuone", "noselect" }
+
+-- Border on all floats (hover, signature help, diagnostics)
+vim.o.winborder = "rounded"

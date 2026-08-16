@@ -16,6 +16,33 @@ return {
             end,
         },
     },
+    -- Git diff viewer
+    {
+        "sindrets/diffview.nvim",
+        cmd = { "DiffviewOpen", "DiffviewFileHistory", "DiffviewClose" },
+        keys = {
+            {
+                "<leader>gd",
+                function()
+                    -- Toggle: DiffviewOpen has no toggle command of its own
+                    if next(require("diffview.lib").views) == nil then
+                        vim.cmd("DiffviewOpen")
+                    else
+                        vim.cmd("DiffviewClose")
+                    end
+                end,
+                desc = "Diff view (toggle)",
+            },
+            { "<leader>gf", "<cmd>DiffviewFileHistory %<CR>", desc = "File history (current file)" },
+            { "<leader>gl", "<cmd>DiffviewFileHistory<CR>", desc = "Log (repo history)" },
+        },
+        opts = {
+            enhanced_diff_hl = true,
+            view = {
+                merge_tool = { layout = "diff3_mixed" },
+            },
+        },
+    },
     -- Autopairs
     {
         "windwp/nvim-autopairs",
